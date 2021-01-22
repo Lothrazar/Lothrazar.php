@@ -2,7 +2,7 @@
 // used to get mysql database connection
 class DatabaseService {
 
-    $secrets  = json_decode(file_get_contents("secrets.json"), true);
+    $secrets  = json_decode(file_get_contents("../secrets.json"), true);
 
 
 

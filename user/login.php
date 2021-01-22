@@ -1,5 +1,5 @@
 <?php
-include_once '../database.php';
+include_once '../services/database.php';
 require "../vendor/autoload.php";
 use \Firebase\JWT\JWT;
 
@@ -70,7 +70,11 @@ if ($num > 0) {
     else {
 
         http_response_code(401);
-        echo json_encode(array("message" => "Login failed.", "password" => $password));
+        echo json_encode(array("message" => "Login failed."));
     }
+}
+else {
+    http_response_code(401);
+    echo json_encode(array("message" => "Login failed"));
 }
 ?>
