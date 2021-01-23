@@ -1,5 +1,5 @@
 <?php
-include_once '../services/database.php';
+include_once './services/database.php';
 require "../vendor/autoload.php";
 use \Firebase\JWT\JWT;
 

@@ -17,7 +17,7 @@ class DatabaseService {
         try {
             $this->connection = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->name, $this->user, $this->password);
         } catch(PDOException $exception) {
-            echo "Connection error: " . $exception->getMessage();
+            error_log( "Connection error: " . $exception->getMessage());
         }
 
         return $this->connection;

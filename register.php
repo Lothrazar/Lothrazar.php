@@ -1,5 +1,5 @@
 <?php
-include_once '../services/database.php';
+include_once './services/database.php';
 
 header("Access-Control-Allow-Origin: * ");
 header("Content-Type: application/json; charset=UTF-8");
@@ -14,6 +14,10 @@ $password = '';
 $conn = null;
 
 $databaseService = new DatabaseService();
+if ($conn == null) {
+    
+    error_log("Database connection error ");
+}
 $conn = $databaseService->getConnection();
 
 $data = json_decode(file_get_contents("php://input"));
@@ -47,7 +51,6 @@ if ($stmt->execute()) {
 }
 else {
     http_response_code(400);
-
     echo json_encode(array("message" => "Unable to register the user."));
 }
 ?>
