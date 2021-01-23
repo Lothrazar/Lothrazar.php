@@ -10,7 +10,7 @@ class DatabaseService {
 
     public function get() {
 
-        $this->secrets = json_decode(file_get_contents("../secrets.json"), true);
+        $this->secrets = json_decode(file_get_contents(__DIR__."/../secrets.json"), true);
         $this->password = $this->secrets["mysql_password"];
         $this->connection = null;
 
