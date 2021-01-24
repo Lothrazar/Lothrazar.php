@@ -6,4 +6,4 @@ CREATE TABLE `lothraza_db`.`minecraft_mods` (
     `mc_version_csv` VARCHAR(255) NULL , 
     `github_slug` VARCHAR(255) NOT NULL , 
     `hidden` TINYINT NOT NULL DEFAULT '0' , 
-    PRIMARY KEY (`curse_id`)) ENGINE = InnoDB; 
+    PRIMARY KEY (`curse_id`)) ENGINE = InnoDB;

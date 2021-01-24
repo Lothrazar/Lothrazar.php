@@ -83,6 +83,9 @@ class DatabaseService {
       $stmt->bindParam(':email', $email);
 
       $success = $stmt->execute();
+      if(!$success) {
+        error_log($this->conn->errorInfo());
+      }
       return $success;
     }
     catch(PDOException $exception) {

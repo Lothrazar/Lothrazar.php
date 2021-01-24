@@ -5,4 +5,5 @@ CREATE TABLE `lothraza_db`.`users` (
     `hidden` TINYINT NOT NULL DEFAULT '0' , 
     PRIMARY KEY (`id`)) ENGINE = InnoDB; 
 
-ALTER TABLE users AUTO_INCREMENT = 1;
+
+ALTER TABLE users modify id int AUTO_INCREMENT;
