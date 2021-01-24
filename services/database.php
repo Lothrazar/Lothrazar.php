@@ -1,5 +1,6 @@
 <?php
 
+require __DIR__ . '/../vendor/autoload.php';
 use \Firebase\JWT\JWT;
 
 // used to get mysql database connection
@@ -35,18 +36,23 @@ class DatabaseService {
     if ($num > 0) {
       return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    error_log(print_r($this->conn->errorInfo(), true));
+
     return null;
   }
   
   public function login($email, $password) {
     $row = $this->getUser($email);
     if ($row == null) {
+
+      error_log("login get user by email not found ".$email);
+
       return null;
     }
 
     error_log("login user ".$row); 
     
-    if (password_verify($password, $ $row['password'])) {
+    if (password_verify($password, $row['password'])) {
 
         $issuer = "https://www.lothrazar.net";
         $audience = $issuer;
@@ -58,12 +64,15 @@ class DatabaseService {
             "nbf" => $iat + 10,
             "exp" => $iat + 60,
             "data" => array(
-                "id" => $$row['id'],
+                "id" => $row['id'],
                 "email" => $email
         ));
-
+        error_log("login success, about to create jwt");
         $jwt = JWT::encode($token, $this->jwtSecret);
         return $jwt;
+    }
+    else {
+      error_log("use mismatched password ". $password);
     }
 
     return null;

@@ -1,6 +1,6 @@
 <?php
 include_once './services/database.php';
-require "../vendor/autoload.php";
+// require "./vendor/autoload.php";
 use \Firebase\JWT\JWT;
 
 header("Access-Control-Allow-Origin: *");
