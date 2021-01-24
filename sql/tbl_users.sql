@@ -4,3 +4,5 @@ CREATE TABLE `lothraza_db`.`users` (
     `password` VARCHAR(255) NOT NULL , 
     `hidden` TINYINT NOT NULL DEFAULT '0' , 
     PRIMARY KEY (`id`)) ENGINE = InnoDB; 
+
+ALTER TABLE users AUTO_INCREMENT = 1;
