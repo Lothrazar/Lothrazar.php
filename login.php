@@ -18,18 +18,16 @@ $data = json_decode(file_get_contents("php://input"));
 
 $email = $data->email;
 $password = $data->password;
+// TODO: input validation
  
 $jwt = $db->login($email, $password);
 
 if($jwt != null) {
   http_response_code(200);
-  echo json_encode(
-    array(
-        "message" => "Successful login.",
-        "jwt" => $jwt,
-        "email" => $email,
-        "expireAt" => $expire_claim
-    ));
+  echo json_encode(array(
+      "message" => "Successful login.",
+      "jwt" => $jwt
+  ));
 }
 else {
   http_response_code(401);

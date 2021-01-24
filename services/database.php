@@ -48,7 +48,7 @@ class DatabaseService {
     
     if (password_verify($password, $ $row['password'])) {
 
-        $issuer = "https://www.lothrazar.net"; // this can be the servername
+        $issuer = "https://www.lothrazar.net";
         $audience = $issuer;
         $iat = time(); 
         $token = array(
@@ -59,20 +59,11 @@ class DatabaseService {
             "exp" => $iat + 60,
             "data" => array(
                 "id" => $$row['id'],
-                // "firstname" => $firstname,
-                // "lastname" => $lastname,
                 "email" => $email
         ));
 
         $jwt = JWT::encode($token, $this->jwtSecret);
         return $jwt;
-        // echo json_encode(
-        //     array(
-        //         "message" => "Successful login.",
-        //         "jwt" => $jwt,
-        //         "email" => $email,
-        //         "expireAt" => $expire_claim
-        //     ));
     }
 
     return null;
@@ -81,8 +72,8 @@ class DatabaseService {
   public function insertUser($email, $password) {
     try {
       $table_name = 'users';
-      $query = "INSERT INTO " . $table_name . "
-                      SET    email = :email,
+      $query = "INSERT INTO " . $table_name . " SET id = NULL,
+                          email = :email,
                           password = :password";
                           
       $stmt = $this->conn->prepare($query);
